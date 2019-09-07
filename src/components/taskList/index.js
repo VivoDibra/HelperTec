@@ -13,11 +13,7 @@ export default class taskList extends React.Component {
           barStyle="dark-content"
         />
         <Container>
-          <Text>OI</Text>
-          <Text>OI</Text>
-          <Text>OI</Text>
-          <Text>OI</Text>
-          <Text>OI</Text>
+          <Text>FlatList vai aqui!</Text>
         </Container>
       </>
     );

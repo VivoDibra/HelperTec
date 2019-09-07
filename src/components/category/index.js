@@ -20,12 +20,12 @@ class Category extends React.Component {
             <Desc>Personal</Desc>
           </Box>
 
-          <Box onPress={() => {}}>
+          <Box onPress={() => this.props.navigation.navigate("tasks")}>
             <Icon name="team" size={34} color="#000" />
             <Desc>Job</Desc>
           </Box>
 
-          <Box onPress={() => {}}>
+          <Box onPress={() => this.props.navigation.navigate("tasks")}>
             <Icon name="linechart" size={34} color="#000" />
             <Desc>Academic</Desc>
           </Box>
