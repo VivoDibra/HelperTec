@@ -1,21 +1,23 @@
-import React from "react";
-import { StatusBar, FlatList, Text } from "react-native";
+import React from 'react';
+import { FlatList, Text, TouchableOpacity } from 'react-native';
+import { withNavigation } from "react-navigation";
 
-import { Container } from "./style";
+import { Container } from './style';
+import Card from '../minCard/index';
 
-export default class taskList extends React.Component {
+class taskList extends React.Component {
   render() {
     return (
       <>
-        <StatusBar
-          backgroundColor="transparent"
-          translucent
-          barStyle="dark-content"
-        />
         <Container>
-          <Text>FlatList vai aqui!</Text>
+          <TouchableOpacity onPress={ () => this.props.navigation.navigate('newTask') }>
+            <Text>Nova Task!</Text>
+          </TouchableOpacity>
+          <Card title='Terminar app' description='Terminar esse app para servir como TCC alem de me ajudar na minha organização no proximo semestre' deadend='31/12/2019' />
         </Container>
       </>
     );
   }
 }
+
+export default withNavigation(taskList);

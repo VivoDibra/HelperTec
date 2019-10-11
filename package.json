@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "react-native start",
+    "start": "react-native run-android",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -26,6 +26,7 @@
     "eslint": "^6.0.1",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.55.0",
+    "prettier": "^1.18.2",
     "react-test-renderer": "16.8.6"
   },
   "jest": {
