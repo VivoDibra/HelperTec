@@ -32,11 +32,11 @@ export default class MinCard extends React.Component {
         {this.CountForDeadend()}
         
         <Section>
-          <Button>
+          <Button color="green">
             <Icon name="tool" size={16} color="#000" />
             <Title>Editar</Title>
           </Button>
-          <Button>
+          <Button color="red">
             <Icon name="delete" size={16} color="#000" />
             <Title>Excluir</Title>
           </Button>

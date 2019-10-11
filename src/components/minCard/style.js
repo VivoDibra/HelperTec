@@ -8,6 +8,7 @@ export const Card = Styled.TouchableOpacity`
 
 export const Title = Styled.Text`
     margin-bottom: 5px;
+    font-size: 20px;
     font-weight: bold;
 `;
 
@@ -31,4 +32,9 @@ export const Section = Styled.View`
 export const Button = Styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    background-color: ${props => props.color};
+    padding: 10px;
+    height: 100%;
+    flex: 1;
 `;

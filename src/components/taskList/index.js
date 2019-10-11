@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, Text, TouchableOpacity } from 'react-native';
 import { withNavigation } from "react-navigation";
 
-import { Container } from './style';
+import { Container, Button } from './style';
 import Card from '../minCard/index';
 
 class taskList extends React.Component {
@@ -10,9 +10,9 @@ class taskList extends React.Component {
     return (
       <>
         <Container>
-          <TouchableOpacity onPress={ () => this.props.navigation.navigate('newTask') }>
+          <Button onPress={ () => this.props.navigation.navigate('newTask') }>
             <Text>Nova Task!</Text>
-          </TouchableOpacity>
+          </Button>
           <Card title='Terminar app' description='Terminar esse app para servir como TCC alem de me ajudar na minha organização no proximo semestre' deadend='31/12/2019' />
         </Container>
       </>
