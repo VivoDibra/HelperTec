@@ -1,19 +1,41 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity } from 'react-native';
-import { withNavigation } from "react-navigation";
+import { FlatList, Text } from 'react-native';
+import { withNavigation } from 'react-navigation';
+import getRealm from '../../services/realm';
 
 import { Container, Button } from './style';
 import Card from '../minCard/index';
 
 class taskList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Tasks: []
+    };
+  }
+
+  async componentDidMount() {
+    const realm = await getRealm();
+    const tmp_data = await realm.objects('Tasks').sorted('id', true);
+
+    this.setState({ Tasks: tmp_data });
+  }
+
   render() {
     return (
       <>
         <Container>
-          <Button onPress={ () => this.props.navigation.navigate('newTask') }>
+          <Button onPress={() => this.props.navigation.navigate('newTask')}>
             <Text>Nova Task!</Text>
           </Button>
-          <Card title='Terminar app' description='Terminar esse app para servir como TCC alem de me ajudar na minha organização no proximo semestre' deadend='31/12/2019' />
+
+          <FlatList
+            data={this.state.Tasks}
+            keyExtractor={item => String(item.id)}
+            renderItem={({ item }) => <Card data={ item } />}
+            showsVerticalScrollIndicator={ false }
+          />
         </Container>
       </>
     );

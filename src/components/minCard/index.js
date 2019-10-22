@@ -1,6 +1,8 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { withNavigation } from 'react-navigation'
 
+import getRealm from '../../services/realm';
 import {
   Card,
   Title,
@@ -11,33 +13,47 @@ import {
   Button
 } from './style';
 
-export default class MinCard extends React.Component {
-  CountForDeadend() {
-    const Count = '00:00:00';
-    /*Pegar o deadend (prazo final da task), 
-        e fazer a conta de quanto tempo falta, 
-        se faltar pouco tempo, exibir contagem no card*/
-    return <CountDown>{Count}</CountDown>;
+
+class MinCard extends React.Component {
+
+  async handleDelete(){
+    const realm = await getRealm()
+
+    await realm.write(() => {
+      const delTask = realm.objectForPrimaryKey('Tasks', this.props.data.id)
+
+      realm.delete(delTask)
+    })
+
+    this.render()
+  }
+
+  fomatedDeadend(){
+    //const deadend = String(this.props.data.deadEnd).substring(8, 18).replace(/ /g, '/')
+    let ano = this.props.data.deadEnd.getFullYear()
+    let mes = this.props.data.deadEnd.getMonth()
+    let dia = this.props.data.deadEnd.getDate()
+
+    return (dia+'/'+mes+'/'+ano)
   }
 
   render() {
     return (
       <Card>
         <Section>
-          <Title>{this.props.title}</Title>
-          <DeadEnd>{this.props.deadend}</DeadEnd>
+          <Title>{this.props.data.title}</Title>
+          <DeadEnd>{ this.fomatedDeadend() }</DeadEnd>
         </Section>
 
-        <Description>{this.props.description}</Description>
-        {this.CountForDeadend()}
-        
+        <Description numberOfLines={ 3 }>{this.props.data.description}</Description>
+
         <Section>
-          <Button color="green">
-            <Icon name="tool" size={16} color="#000" />
+          <Button color="#71aac1">
+            <Icon name="tool" size={20} color="#000" />
             <Title>Editar</Title>
           </Button>
-          <Button color="red">
-            <Icon name="delete" size={16} color="#000" />
+          <Button color="red" onPress={() => { this.handleDelete() }}>
+            <Icon name="delete" size={20} color="#000" />
             <Title>Excluir</Title>
           </Button>
         </Section>
@@ -45,3 +61,5 @@ export default class MinCard extends React.Component {
     );
   }
 }
+
+export default withNavigation(MinCard)

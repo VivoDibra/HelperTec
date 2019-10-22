@@ -4,6 +4,7 @@ export const Card = Styled.TouchableOpacity`
     border-radius: 10px;
     background-color: #CCC;
     padding: 10px;
+    margin-bottom: 10px;
 `;
 
 export const Title = Styled.Text`
@@ -15,11 +16,12 @@ export const Title = Styled.Text`
 export const Description = Styled.Text`
     line-height: 20px;
     font-size: 16px;
+    margin-bottom: 5px;
 `;
 
 export const DeadEnd = Styled.Text`
     line-height: 20px;
-    font-size: 18px;
+    font-size: 14px;
     `;
 
 export const CountDown = Styled.Text``;
@@ -30,11 +32,11 @@ export const Section = Styled.View`
 `;
 
 export const Button = Styled.TouchableOpacity`
+    flex: 1;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: ${props => props.color};
     padding: 10px;
     height: 100%;
-    flex: 1;
 `;
